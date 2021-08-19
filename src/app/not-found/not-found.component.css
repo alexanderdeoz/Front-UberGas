@@ -1,0 +1,13 @@
+img{
+    width: 850px;
+}
+.item{
+    display: inline-block;
+    margin-right: 50px;
+  
+}
+.letrero{
+    color: blue;
+    font-size: large;
+    margin-inline: 80px;
+}
