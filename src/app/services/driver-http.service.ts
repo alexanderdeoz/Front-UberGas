@@ -41,6 +41,13 @@ export class DriverHttpService {
       catchError(Handler.render)
     );
   }
+  storeDriver(driver:DriverModel):Observable<DriverModel> {
+    const url = this.API_URL + `/drivers`;
+    return this.httpClient.post<DriverModel>(url,driver).pipe(
+      map(response => response),
+      catchError(Handler.render)
+    );
+  }
 
   deleteDriver(placa:string | undefined):Observable<DriverModel> {
     const url = this.API_URL + `/drivers/${placa}`;

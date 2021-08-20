@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 import { DriverModel } from '../../../models/driver.model'
+import { MessageService } from '../../../services/mensage.service'
 import { DriverHttpService } from '../../../services/driver-http.service'
 @Component({
   selector: 'app-list',
@@ -10,12 +11,16 @@ import { DriverHttpService } from '../../../services/driver-http.service'
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+
   driver: DriverModel = {};
   drivers: DriverModel[] = [];
   formDriver: FormGroup;
 
 
-  constructor(private driverHttpService: DriverHttpService, private formBuilder: FormBuilder) {
+  constructor(
+    private driverHttpService: DriverHttpService,
+    private formBuilder: FormBuilder,
+    public menssageService: MessageService) {
 
     this.driver = {
       name: 'Steven',
@@ -86,7 +91,9 @@ export class ListComponent implements OnInit {
   updateDriver(driver: DriverModel): void {
     this.driverHttpService.updateDriver(driver.placa, driver).subscribe(
       response => {
-        console.log(response)
+        console.log(response);
+        this.menssageService.success(response);
+        this.formDriver.reset();
       },
       error => {
         console.log(error)
@@ -94,7 +101,18 @@ export class ListComponent implements OnInit {
     );
 
   }
-
+  storeDriver(driver: DriverModel) {
+    this.driverHttpService.storeDriver(driver).subscribe(
+      response => {
+        console.log(response)
+        this.menssageService.success(response);
+        this.formDriver.reset();
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
 
   selectedDriver(driver: DriverModel) {
 
@@ -104,8 +122,14 @@ export class ListComponent implements OnInit {
 
   onSubmit() {
     console.log('onsumit')
+
     if (this.formDriver.valid) {
-      this.updateDriver(this.formDriver.value);
+      if (this.formDriver.value) {
+        this.updateDriver(this.formDriver.value);
+      } else {
+        this.storeDriver(this.formDriver.value);
+      }
+
     } else {
       this.formDriver.markAllAsTouched();
     }
@@ -136,5 +160,5 @@ export class ListComponent implements OnInit {
   get passwordField() {
     return this.formDriver.controls['password'];
   }
- 
+
 }

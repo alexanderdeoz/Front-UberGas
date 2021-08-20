@@ -9,3 +9,7 @@ export interface DriverModel {
     email_verified_at?: string;
     password?: string;
 }
+interface Msg {
+    detail?: string;
+    code?: string;
+  }
