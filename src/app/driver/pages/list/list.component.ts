@@ -12,11 +12,10 @@ import { DriverHttpService } from '../../../services/driver-http.service'
 export class ListComponent implements OnInit {
   driver: DriverModel = {};
   drivers: DriverModel[] = [];
- 
   formDriver: FormGroup;
 
 
-  constructor(private driverHttpService: DriverHttpService,private formBuilder:FormBuilder) {
+  constructor(private driverHttpService: DriverHttpService, private formBuilder: FormBuilder) {
 
     this.driver = {
       name: 'Steven',
@@ -28,24 +27,24 @@ export class ListComponent implements OnInit {
       email: 'sad.chinchin@yavirac.edu.ec',
       password: '1234'
     };
-    this.formDriver= this.newFormGroupDriver();
+    this.formDriver = this.newFormGroupDriver();
 
   }
 
   ngOnInit() {
     this.getDrivers();
   }
-  newFormGroupDriver():FormGroup{
+  newFormGroupDriver(): FormGroup {
     return this.formBuilder.group(
       {
-        name: [null,[Validators.required,Validators.maxLength(100)]],
-        lastname: [null,[Validators.required,Validators.maxLength(100)]],
-        birthay: [null,[Validators.required,Validators.maxLength(20)]],
-        phone: [null,[Validators.required,Validators.maxLength(10)]],
-        placa: [null,[Validators.required,,Validators.maxLength(8)]],
-        vehicle: [null,[Validators.required,Validators.maxLength(30)]],
-        email: [null,[Validators.required,Validators.maxLength(100)]],
-        passwor: [null,[Validators.required,Validators.maxLength(100)]],
+        name: [null, [Validators.required, Validators.maxLength(100)]],
+        lastname: [null, [Validators.required, Validators.maxLength(100)]],
+        birthay: [null, [Validators.required, Validators.maxLength(20)]],
+        phone: [null, [Validators.required, Validators.maxLength(10)]],
+        placa: [null, [Validators.required, , Validators.maxLength(8)]],
+        vehicle: [null, [Validators.required, Validators.maxLength(30)]],
+        email: [null, [Validators.required, Validators.maxLength(100)]],
+        passwor: [null, [Validators.required, Validators.maxLength(100)]],
       }
     )
   }
@@ -97,13 +96,18 @@ export class ListComponent implements OnInit {
   }
 
 
-  selectedDriver(driver :DriverModel){
+  selectedDriver(driver: DriverModel) {
 
     console.log(driver);
     this.formDriver.patchValue(driver);
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log('onsumit')
+    if(this.formDriver.valid){
+      this.updateDriver(this.formDriver.value);
+    }else{
+      this.formDriver.markAllAsTouched();
+    }
   }
 }
