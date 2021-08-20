@@ -51,7 +51,7 @@ export class ListComponent implements OnInit {
 
   getDrivers(): void {
     this.drivers.push(this.driver);
-    this.driverHttpService.getAll().subscribe(
+    this.driverHttpService.getDrivers().subscribe(
       response => {
         //respuesta satisfactoria
         console.log(response);
@@ -68,7 +68,7 @@ export class ListComponent implements OnInit {
   }
 
   deleteDriver(driver: DriverModel): void {
-    this.driverHttpService.delete(driver.placa).subscribe(
+    this.driverHttpService.deleteDriver(driver.placa).subscribe(
       response => {
         console.log(response);
         this.removeDriver(driver);
@@ -84,7 +84,7 @@ export class ListComponent implements OnInit {
   }
 
   updateDriver(driver: DriverModel): void {
-    this.driverHttpService.update(driver.placa, driver).subscribe(
+    this.driverHttpService.updateDriver(driver.placa, driver).subscribe(
       response => {
         console.log(response)
       },
