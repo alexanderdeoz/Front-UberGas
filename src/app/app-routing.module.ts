@@ -10,16 +10,17 @@ const routes: Routes = [
     component: MainComponent
   },
   {
+    path: 'Main',
+    component: MainComponent
+  },
+  {
     path: 'driver',
     loadChildren: () => import('./driver/driver.module').then(m => m.DriverModule)
   }, {
     path: 'client',
     loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
   },
-  {
-    path: 'Main',
-    component: MainComponent
-  },
+ 
   {
     path: 'not-found',
     component: NotFoundComponent

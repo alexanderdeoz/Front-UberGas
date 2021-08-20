@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 // rutas Principales
 import { AppRoutingModule } from './app-routing.module';
 //PrimeNg Modules
@@ -22,9 +23,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ButtonModule,
     CardModule,
-    InputTextModule
+    InputTextModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

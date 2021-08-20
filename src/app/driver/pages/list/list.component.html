@@ -1,0 +1,142 @@
+
+<p-card header="header">
+    <div class="p-fluid">
+        <form [formGroup]="formDriver" (ngSubmit)="onSubmit()">
+            <div class="p-field">
+                <label for="placa"> Placa :</label>
+                <input pInputText type="text" id="placa" formControlName="placa">
+            </div>
+            <div 
+            ngif="formDriver.controls['placa'].invalid &&(formDriver.controls['placa'].touched || formDriver.controls['placa'].dirty)">
+         <small  ngif="formDriver.controls['placa'].errors?required" class="p-error">
+            campo requerido
+
+         </small>
+         <small  ngif="formDriver.controls['placa'].errors?maxlength" class="p-error">
+             el maximo de caracteres fue alcansado
+         </small>
+            </div>
+            <br>
+            <div class="p-field">
+                <label for="name"> name :</label>
+                <input pInputText type="text" id="name" formControlName="name">
+            </div>
+            <br>
+            <div class="p-field">
+                <label for="lastname"> lastname :</label>
+                <input pInputText type="text" id="lastname" formControlName="lastname">
+            </div>
+            <br>
+            <div class="p-field">
+                <label for="birthay"> birthay :</label>
+                <input pInputText type="text" id="birthay" formControlName="birthay">
+            </div>
+            <br>
+            <div class="p-field">
+                <label for="phone"> phone :</label>
+                <input pInputText type="text" id="phone" formControlName="phone">
+            </div>
+            <br>
+            <div class="p-field">
+                <label for="vehicle"> vehicle :</label>
+                <input pInputText type="text" id="vehicle" formControlName="vehicle">
+            </div>
+            <br>
+            <div class="p-field">
+                <label for="email"> email :</label>
+                <input pInputText type="text" id="email" formControlName="email">
+            </div>
+    
+            <br>
+            <div class="p-field">
+                <label for="password">password :</label>
+                <input pInputText type="text" id="password" formControlName="password">
+            </div>
+           
+            <div class="p-field">
+                <button pButton
+                type="submit"
+                label="Guardar"
+               
+                ></button>
+        
+            </div>
+        </form>
+    
+    </div>
+</p-card>
+
+
+
+
+------------------------------------------------
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+
+
+        <th>
+            Lasname
+        </th>
+
+        <th>
+            Birhday
+        </th>
+
+        <th>
+            phone
+        </th>
+
+        <th>
+            Placa
+        </th>
+
+        <th>
+            Vehicle
+        </th>
+
+        <th>
+            email
+        </th>
+
+        <th>
+            password
+        </th>
+    </tr>
+    <tr ngfor='let driver of drivers'>
+        <td>
+            {{driver.name}}
+        </td>
+        <td>
+            {{driver.lastname}}
+        </td>
+        <td>
+            {{driver.birthay}}
+        </td>
+        <td>
+            {{driver.phone}}
+        </td>
+        <td>
+            {{driver.placa}}
+        </td>
+        <td>
+            {{driver.vehicle}}
+        </td>
+        <td>
+            {{driver.email}}
+        </td>
+        <td>
+            {{driver.password}}
+        </td>
+        <td>
+            <button pButton type="button" label="mostrar" (click)="selectDriver(driver)"></button>
+            <button pButton type="button" label="Modificar" class="p-button-warning"
+                (click)=" updateDriver(driver)"></button>
+            <button pButton type="button" label="Eliminar" class="p-button-danger"
+                (click)="deleteDriver(driver)"></button>
+
+        </td>
+    </tr>
+</table>

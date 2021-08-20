@@ -7,12 +7,17 @@ import {DriverRoutingModule} from './driver-routing.module'
 //PrimeNg Modules
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
+import { ListComponent } from './pages/list/list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
-  declarations: [RegistroComponent, LoginComponent, ForgotComponent],
+  declarations: [RegistroComponent, LoginComponent, ForgotComponent, ListComponent],
   imports: [
     CommonModule,
+    FormsModule,
     DriverRoutingModule,
+    ReactiveFormsModule,
     CardModule,
     ButtonModule
   ]
