@@ -104,10 +104,37 @@ export class ListComponent implements OnInit {
 
   onSubmit() {
     console.log('onsumit')
-    if(this.formDriver.valid){
+    if (this.formDriver.valid) {
       this.updateDriver(this.formDriver.value);
-    }else{
+    } else {
       this.formDriver.markAllAsTouched();
     }
   }
+
+  get placaField() {
+    return this.formDriver.controls['placa'];
+  }
+
+  get nameField() {
+    return this.formDriver.controls['name'];
+  }
+  get lastnameField() {
+    return this.formDriver.controls['lastname'];
+  }
+  get birthayField() {
+    return this.formDriver.controls['birthay'];
+  }
+  get phoneField() {
+    return this.formDriver.controls['phone'];
+  }
+  get vehicleField() {
+    return this.formDriver.controls['vehicle'];
+  }
+  get emailField() {
+    return this.formDriver.controls['email'];
+  }
+  get passwordField() {
+    return this.formDriver.controls['password'];
+  }
+ 
 }
